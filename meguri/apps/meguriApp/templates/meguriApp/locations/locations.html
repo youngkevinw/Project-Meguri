@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List of locations</title>
+    {% load static %}
+    <script src="{% static 'meguriApp/js/map.js' %}" ></script>
+    <style>
+        #map {
+            height: 250px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of locations in {{this_series.title}}</h1>
+    <img src="static/meguriApp/images/{{this_series.title}}.png">
+    <div id="map"></div>
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+    </script></body>
+</html>

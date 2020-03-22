@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Find your destination</title>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'meguriApp/css/materialize.min.css' %}"  media="screen,projection"/>
+
+</head>
+<body>
+    <div style="position: fixed; z-index: -99; width: 100%; height: auto">
+        <video loop autoplay muted playsinline frameborder="0" height="100%" width="100%" 
+            src="{% static 'meguriApp\videos\background.mp4'%}">
+        </video> 
+        <!-- this is a video file above me -->
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="col s12" style="text-align: center;">
+                <h1 style="color: beige;">Find your destination here!</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" style="text-align: center;">
+                <h3><a href="/filter" style="color: beige;"><u>Search by location</u></a></h3>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col s12" style="text-align: center;">
+                <h3><a href="/currentlocation" style="color: beige;"><u>Search what's near you!</u></a></h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

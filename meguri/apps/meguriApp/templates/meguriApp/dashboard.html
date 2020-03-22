@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %} <!-- enables next line -->
+	<link rel="stylesheet" href="{% static 'meguriApp/css/style.css' %}">
+	<title>Dashboard</title>
+	
+	
+</head>
+<body>
+
+
+<!-- <table> -->
+	<!-- <form action="/addseries" method="POST"> -->
+		<!-- {% csrf_token %} -->
+
+	<!-- <tr> -->
+		<!-- <td colspan=2><h2 align=center>Add a new series</h2></td> -->
+		<!-- <p>Cities can be added and description updated if series name is valid</p> -->
+		<!-- <p>If you mess up, you get to fix the DB manually</p> -->
+		<!-- <p>If city name does not exist, it will be added to the DB</p> -->
+	<!-- </tr> -->
+	<!-- <tr> -->
+		<!-- <td><p>Title (required):</p></td> -->
+		<!-- <td><input type="text" name="title" /></td> -->
+	<!-- <tr> -->
+		<!-- <td><p>City:</p></td> -->
+		<!-- <td><input type="text" name="city" /></td> -->
+	<!-- </tr> -->
+	<!-- <tr> -->
+		<!-- <td><p>Description:</p></td> -->
+		<!-- <td><textarea name="description" rows="5" cols="50"></textarea></td> -->
+	<!-- </tr>	 -->
+	<!-- <tr> -->
+		<!-- <td colspan=2 align=center><input type="submit" value="Check for spelling before clicking" /></td> -->
+	<!-- </tr> -->
+	<!-- </form> -->
+<!-- </table> -->
+
+<h3>Add entries manually via DB editor GUI</h3>
+
+<table border=1>
+	<h2>Series:</h2>
+	
+	<tr>
+		<th>id</th>
+		<th>Title</th>
+		<th>City</th>
+		<th>Description</th>
+		<th>Pic</th>
+	</tr>
+	
+	{% for s in series %}
+	<tr>
+		<td>{{s.id}}</td>
+		<td><a href="/locations/{{s.id}}">{{s.title}}</td>
+		<td>
+			{% for c in s.city.all %}
+				<p>{{c.city_name}}</p>
+			{% endfor %}
+		</td>
+		<td>{{s.description}}</td>
+		<td><img style="height: 100px;" src="/static/meguriApp/images/{{s.title}}.png"></td>
+
+			<!-- <td><a href="/trips/remove/{{trip.id}}">Remove</a> | <a href="/trips/edit/{{trip.id}}">Edit</a></td> -->
+	</tr>
+	{% endfor %}
+	
+</table>
+
+</body>
+</html>

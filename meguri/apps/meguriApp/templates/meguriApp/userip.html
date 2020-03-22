@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search by your current location</title>
+    {% load static %}
+    <script src="{% static 'meguriApp/js/userip.js' %}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'meguriApp/css/materialize.min.css' %}"  media="screen,projection"/>
+
+    <style>
+        #map {
+            height: 600px;
+            width: 600px;
+            margin-left: 450px;
+        }
+        #container{
+          text-align: center;
+          background-color: rgb(168, 185, 199);
+          height: 1000px;
+          width: 100%;
+      }
+        h3{
+          color: rgb(90, 61, 61);
+        }
+        img{
+          width:100%;
+          height:auto;
+        }
+    </style>
+    <script>
+    $( document ).ready(function() {
+    $(function() {
+      var GOOGLE_API_KEY = 'AIzaSyAIqRDSFtuK2hN3mVWu_Rcc6HwUEVzWVEo'; // <--- *** fill this out ***
+      $.ajax({
+        url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAIqRDSFtuK2hN3mVWu_Rcc6HwUEVzWVEo',
+        data: JSON.stringify({ "considerIp": "true" }),
+        type: 'POST',
+        contentType: 'application/json',
+        success: function(data) {
+          console.log('success')
+          if(data.location) {
+            var out = [data.location.lat, data.location.lng].join(', ');
+            document.getElementById('output').innerHTML = out;
+          } else {
+            document.getElementById('output').innerHTML = 'not found';
+          }
+        },
+        error: function(e) {
+          console.log('error!', JSON.parse(e.responseText));
+        }
+      });
+    });
+});
+</script>
+</head>
+<body>
+      <div id="container">
+        
+    <div class="row">
+    <div class="col s12">
+
+    <h3>Here are the locations near your current location:</h3>
+    </div></div>
+    <a href="/">Go back to main page</a>
+    <div class="row">
+    <div class="col s6">
+    <div id="map"></div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIqRDSFtuK2hN3mVWu_Rcc6HwUEVzWVEo
+&callback=initMap">
+</script>
+</div></div>
+</body>
+</html>

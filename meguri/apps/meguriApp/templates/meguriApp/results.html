@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Series that was featured in your query</title>
+	{% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'meguriApp/css/materialize.min.css' %}"  media="screen,projection"/>
+    <style>
+            #map {
+                margin-left: 300px;
+                height: 300px;
+                width: 300px;
+            }
+            #container{
+                text-align: center;
+                background-color: rgb(168, 185, 199);
+                height: 1000px;
+                width: 100%;
+            }
+            h3{
+                color: rgb(90, 61, 61);
+            }
+        </style>
+
+</head>
+<body>
+    <div id="container">
+        <div class="resultbox">
+        <div class="row">
+            <div class="col s12">
+    <h3>Series featured in your location</h3>
+            </div></div>
+            <br><br>
+<div class="row">
+    <div class="col s12">
+<table border=1  class="striped bordered">
+	<tr>
+		<th>Title</th>
+		<th>City</th>
+		<th>Description</th>
+		<th>Pic</th>
+	</tr>
+	
+	{% for s in series %}
+	<tr>
+		<td><a href="/locations/{{s.id}}">{{s.title}}</td>
+		<td>
+			{% for c in s.city.all %}
+				<p>{{c.city_name}}</p>
+			{% endfor %}
+		</td>
+		<td>{{s.description}}</td>
+		<td><img style="height: 100px; " src="static/meguriApp/images/{{s.title}}.png"></td>
+
+		<!-- <td><a href="/trips/remove/{{trip.id}}">Remove</a> | <a href="/trips/edit/{{trip.id}}">Edit</a></td> -->
+	</tr>
+    {% endfor %}
+    </table>
+    </div></div></div>
+</div>
+</body>
+</html>

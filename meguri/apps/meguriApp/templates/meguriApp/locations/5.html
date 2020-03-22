@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Locations in {{this_series.title}}</title>
+    {% load static %}
+
+    <script src="{% static 'meguriApp/js/nonnonmap.js' %}" ></script>
+    <style>
+        #map {
+            height: 250px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+	<h2>Locations in {{this_series.title}}</h2>
+    <img style="height: 200px; " src="/static/meguriApp/images/{{this_series.title}}.png">
+    <div id="map"></div>
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIqRDSFtuK2hN3mVWu_Rcc6HwUEVzWVEo&callback=initMap">
+    </script>
+
+
+<!-- new code to copy-paste -->
+
+<table border=1>
+	
+	<tr>
+		<th>Location</th>
+		<th>Description</th>
+		<th>Pic</th>
+	</tr>
+	{% for s in this_series.locations.all %}
+	<tr>
+		<td>{{s.location}}</td>
+		<td>{{s.description}}</td>
+		<td>
+			<a href="/static/meguriApp/images/{{this_series.title}}_{{s.id}}.png">
+				<img style="height: 200px; " src="/static/meguriApp/images/{{this_series.title}}_{{s.id}}.png" alt="Click to enlarge">
+			</a>
+		</td>
+
+			<!-- <td><a href="/trips/remove/{{trip.id}}">Remove</a> | <a href="/trips/edit/{{trip.id}}">Edit</a></td> -->
+	</tr>
+	{% endfor %}
+	
+</table>	
+	
+	
+</body>
+</html>
